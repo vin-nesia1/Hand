@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free Text to Handwriting Generator by VIN NESIA. Convert typed text into realistic handwritten text images. Perfect for assignments, notes, and documents.">
+    <meta name="keywords" content="text to handwriting, handwriting generator, convert text, handwritten text, assignment tool, VIN NESIA">
+    <meta property="og:title" content="TEXT TO HANDWRITING VIN NESIA - Free Handwriting Generator">
+    <meta property="og:description" content="Convert your typed text into beautiful handwritten text images. Multiple handwriting styles available.">
+    <meta property="og:url" content="https://handwriting.vinnesia.my.id">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.vinnesia.my.id/og-image.jpg">
+    <meta property="og:site_name" content="VIN NESIA">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TEXT TO HANDWRITING VIN NESIA - Free Handwriting Generator">
+    <meta name="twitter:description" content="Convert your typed text into beautiful handwritten text images. Multiple handwriting styles available.">
+    <title>TEXT TO HANDWRITING VIN NESIA - Professional Handwriting Generator</title>
+    <link rel="icon" href="favicon.ico">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3PYZXZFNER"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-3PYZXZFNER');
+    </script>
+    <!-- Google Fonts - Handwriting Styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Caveat:wght@400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=Handlee&family=Amatic+SC:wght@400;700&family=Satisfy&family=Indie+Flower&family=Shadows+Into+Light&family=Permanent+Marker&family=Reenie+Beanie&family=Architects+Daughter&family=Covered+By+Your+Grace&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif;
+            background: linear-gradient(135deg, #2d1b69 0%, #11998e 50%, #1a1a2e 100%);
+            background-attachment: fixed;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 1rem;
+        }
+
+        header img {
+            height: 50px;
+            width: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        header h1 {
+            color: #00f5a0;
+            font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: -0.02em;
+        }
+
+        /* Main Container */
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
+        }
+
+        .container h2 {
+            color: #00f5a0;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        /* Layout Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Controls Panel */
+        .controls-panel {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .control-group {
+            margin-bottom: 2rem;
+        }
+
+        .control-label {
+            color: #00f5a0;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        /* Text Input */
+        .text-input {
+            width: 100%;
+            min-height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 1rem;
+            color: #ffffff;
+            font-size: 1rem;
+            line-height: 1.6;
+            resize: vertical;
+            transition: all 0.3s ease;
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: #00f5a0;
+            box-shadow: 0 0 0 2px rgba(0, 245, 160, 0.2);
+        }
+
+        .text-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Font Selection */
+        .font-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .font-option {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 1rem 0.75rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #ffffff;
+            font-size: 0.9rem;
+        }
+
+        .font-option:hover {
+            border-color: #00f5a0;
+            background: rgba(0, 245, 160, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .font-option.selected {
+            border-color: #00f5a0;
+            background: rgba(0, 245, 160, 0.2);
+            box-shadow: 0 4px 16px rgba(0, 245, 160, 0.3);
+        }
+
+        .font-preview {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+            min-height: 2rem;
+        }
+
+        /* Customization Controls */
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .slider {
+            flex: 1;
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #00f5a0;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 245, 160, 0.3);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #00f5a0;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px rgba(0, 245, 160, 0.3);
+        }
+
+        .slider-value {
+            min-width: 60px;
+            text-align: center;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        /* Color Picker */
+        .color-options {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .color-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .color-option:hover {
+            transform: scale(1.1);
+            border-color: #ffffff;
+        }
+
+        .color-option.selected {
+            border-color: #00f5a0;
+            box-shadow: 0 0 0 2px rgba(0, 245, 160, 0.5);
+            transform: scale(1.1);
+        }
+
+        /* Preview Panel */
+        .preview-panel {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .preview-area {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 2rem;
+            min-height: 400px;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: auto;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .handwriting-preview {
+            color: #333333;
+            line-height: 2;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+
+        .preview-placeholder {
+            color: #999999;
+            text-align: center;
+            padding: 4rem 2rem;
+            font-style: italic;
+        }
+
+        /* Button Styles */
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        button {
+            background: linear-gradient(135deg, #00f5a0, #00d4aa);
+            color: #1a1a2e;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 16px rgba(0, 245, 160, 0.3);
+            min-width: 160px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 245, 160, 0.4);
+            background: linear-gradient(135deg, #00d4aa, #00b894);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: 0 4px 16px rgba(0, 245, 160, 0.2);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Sample Templates */
+        .templates-section {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .templates-title {
+            color: #00f5a0;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .template-item {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .template-item:hover {
+            border-color: #00f5a0;
+            background: rgba(0, 245, 160, 0.1);
+        }
+
+        .template-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #00f5a0;
+        }
+
+        .template-preview {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            display: none;
+            margin: 1rem 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00f5a0, #00d4aa);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 2rem 1rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        footer a {
+            color: #00f5a0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin: 0 0.5rem;
+        }
+
+        footer a:hover {
+            color: #00d4aa;
+            text-shadow: 0 0 8px rgba(0, 245, 160, 0.5);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.5rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+
+            .header-content {
+                gap: 0.75rem;
+            }
+
+            header img {
+                height: 40px;
+            }
+
+            main {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 1.5rem;
+                border-radius: 16px;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .font-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 0.5rem;
+            }
+
+            .font-option {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .font-preview {
+                font-size: 1.2rem;
+            }
+
+            .preview-area {
+                min-height: 300px;
+                padding: 1rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            button {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .template-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .color-options {
+                justify-content: center;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+                gap: 0.25rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .slider-container {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: stretch;
+            }
+
+            .slider-value {
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                margin: 0.5rem;
+                padding: 1rem;
+            }
+
+            .controls-panel, .preview-panel {
+                padding: 1rem;
+            }
+
+            .preview-area {
+                padding: 0.75rem;
+                min-height: 250px;
+            }
+
+            .templates-section {
+                padding: 1rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .loading::after {
+            content: '';
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid #00f5a0;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Handwriting Font Classes */
+        .font-kalam { font-family: 'Kalam', cursive; }
+        .font-caveat { font-family: 'Caveat', cursive; }
+        .font-dancing { font-family: 'Dancing Script', cursive; }
+        .font-handlee { font-family: 'Handlee', cursive; }
+        .font-amatic { font-family: 'Amatic SC', cursive; }
+        .font-satisfy { font-family: 'Satisfy', cursive; }
+        .font-indie { font-family: 'Indie Flower', cursive; }
+        .font-shadows { font-family: 'Shadows Into Light', cursive; }
+        .font-marker { font-family: 'Permanent Marker', cursive; }
+        .font-reenie { font-family: 'Reenie Beanie', cursive; }
+        .font-architects { font-family: 'Architects Daughter', cursive; }
+        .font-covered { font-family: 'Covered By Your Grace', cursive; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="logo.png" alt="VIN NESIA Logo" onerror="this.style.display='none'">
+            <h1>TEXT TO HANDWRITING VIN NESIA</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h2>✍️ Professional Handwriting Generator</h2>
+            
+            <div class="content-grid">
+                <!-- Controls Panel -->
+                <div class="controls-panel">
+                    <div class="control-group">
+                        <label class="control-label">📝 Enter Your Text</label>
+                        <textarea 
+                            class="text-input" 
+                            id="textInput" 
+                            placeholder="Type your text here... Perfect for assignments, notes, letters, and more!
+
+Example: Write a beautiful handwritten letter, complete homework assignments, create personalized notes, or generate handwritten quotes.
+
+Tips:
+• Use natural language and complete sentences
+• Add punctuation for realistic appearance
+• Try different fonts to match your style
+• Adjust size and spacing for best results"
+                        ></textarea>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">🎨 Choose Handwriting Style</label>
+                        <div class="font-grid">
+                            <div class="font-option selected" data-font="kalam">
+                                <span class="font-preview font-kalam">Abc</span>
+                                <span>Kalam</span>
+                            </div>
+                            <div class="font-option" data-font="caveat">
+                                <span class="font-preview font-caveat">Abc</span>
+                                <span>Caveat</span>
+                            </div>
+                            <div class="font-option" data-font="dancing">
+                                <span class="font-preview font-dancing">Abc</span>
+                                <span>Dancing</span>
+                            </div>
+                            <div class="font-option" data-font="handlee">
+                                <span class="font-preview font-handlee">Abc</span>
+                                <span>Handlee</span>
+                            </div>
+                            <div class="font-option" data-font="amatic">
+                                <span class="font-preview font-amatic">Abc</span>
+                                <span>Amatic</span>
+                            </div>
+                            <div class="font-option" data-font="satisfy">
+                                <span class="font-preview font-satisfy">Abc</span>
+                                <span>Satisfy</span>
+                            </div>
+                            <div class="font-option" data-font="indie">
+                                <span class="font-preview font-indie">Abc</span>
+                                <span>Indie</span>
+                            </div>
+                            <div class="font-option" data-font="shadows">
+                                <span class="font-preview font-shadows">Abc</span>
+                                <span>Shadows</span>
+                            </div>
+                            <div class="font-option" data-font="marker">
+                                <span class="font-preview font-marker">Abc</span>
+                                <span>Marker</span>
+                            </div>
+                            <div class="font-option" data-font="reenie">
+                                <span class="font-preview font-reenie">Abc</span>
+                                <span>Reenie</span>
+                            </div>
+                            <div class="font-option" data-font="architects">
+                                <span class="font-preview font-architects">Abc</span>
+                                <span>Architects</span>
+                            </div>
+                            <div class="font-option" data-font="covered">
+                                <span class="font-preview font-covered">Abc</span>
+                                <span>Covered</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">📏 Font Size</label>
+                        <div class="slider-container">
+                            <input type="range" class="slider" id="fontSizeSlider" min="16" max="72" value="24">
+                            <span class="slider-value" id="fontSizeValue">24px</span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">📐 Line Height</label>
+                        <div class="slider-container">
+                            <input type="range" class="slider" id="lineHeightSlider" min="1.2" max="3" step="0.1" value="2">
+                            <span class="slider-value" id="lineHeightValue">2.0</span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">🖍️ Text Color</label>
+                        <div class="color-options">
+                            <div class="color-option selected" data-color="#000000" style="background-color: #000000"></div>
+                            <div class="color-option" data-color="#1a365d" style="background-color: #1a365d"></div>
+                            <div class="color-option" data-color="#2d3748" style="background-color: #2d3748"></div>
+                            <div class="color-option" data-color="#1a202c" style="background-color: #1a202c"></div>
+                            <div class="color-option" data-color="#744210" style="background-color: #744210"></div>
+                            <div class="color-option" data-color="#97266d" style="background-color: #97266d"></div>
+                            <div class="color-option" data-color="#3182ce" style="background-color: #3182ce"></div>
+                            <div class="color-option" data-color="#38a169" style="background-color: #38a169"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preview Panel -->
+                <div class="preview-panel">
+                    <label class="control-label">👀 Live Preview</label>
+                    <div class="preview-area" id="previewArea">
+                        <div class="preview-placeholder">
+                            Your handwritten text will appear here...<br><br>
+                            ✨ Start typing in the text box to see the magic!
+                        </div>
+                    </div>
+                    
+                    <div class="progress-container" id="progressContainer">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="button-group">
+                <button id="generateBtn">✍️ Generate Handwriting</button>
+                <button id="downloadBtn" class="hidden">💾 Download PNG</button>
+                <button id="copyBtn" class="hidden">📋 Copy Image</button>
+                <button id="resetBtn">🔄 Reset</button>
+            </div>
+
+            <!-- Sample Templates -->
+            <div class="templates-section">
+                <div class="templates-title">📋 Quick Templates</div>
+                <div class="template-grid">
+                    <div class="template-item" data-template="assignment">
+                        <div class="template-title">📚 Assignment</div>
+                        <div class="template-preview">Dear Teacher, I have completed my homework assignment on time. The topics covered include...</div>
+                    </div>
+                    <div class="template-item" data-template="letter">
+                        <div class="template-title">💌 Personal Letter</div>
+                        <div class="template-preview">Dear Friend, I hope this letter finds you in good health and spirits. I wanted to share...</div>
+                    </div>
+                    <div class="template-item" data-template="note">
+                        <div class="template-title">📝 Study Notes</div>
+                        <div class="template-preview">Chapter 1: Introduction
+Key concepts:
+- Definition and overview
+- Historical background
+- Important principles...</div>
+                    </div>
+                    <div class="template-item" data-template="quote">
+                        <div class="template-title">💭 Inspirational Quote</div>
+                        <div class="template-preview">"The only way to do great work is to love what you do." - Steve Jobs
+
+"Success is not final, failure is not fatal..."</div>
+                    </div>
+                    <div class="template-item" data-template="essay">
+                        <div class="template-title">📄 Essay Sample</div>
+                        <div class="template-preview">Introduction
+
+In today's modern world, technology plays a crucial role in our daily lives. This essay will explore...</div>
+                    </div>
+                    <div class="template-item" data-template="journal">
+                        <div class="template-title">📖 Journal Entry</div>
+                        <div class="template-preview">Today was an amazing day! I learned so many new things and met interesting people. The weather was perfect...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://www.vinnesia.my.id">🏠 Back to Homepage</a>
+                <a href="https://www.vinnesia.my.id/privacy">🔒 Privacy Policy</a>
+            </div>
+            
+            <div class="contact-info">
+                <div>📧 <a href="mailto:support@vinnesia.my.id">support@vinnesia.my.id</a></div>
+                <div>📱 <a href="https://instagram.com/vin.nesia.id">@vin.nesia.id</a></div>
+                <div>💬 WhatsApp: +62 895-3545-11777</div>
+                <div>📍 Indonesia</div>
+            </div>
